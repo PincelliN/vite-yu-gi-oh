@@ -3,12 +3,14 @@ import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
 import { store } from "./store"
+import Loading from './components/Loading.vue';
 
 export default {
   name: "App",
   components: {
     AppHeader,
     AppMain,
+    Loading
 
   },
   data() {
@@ -37,9 +39,15 @@ export default {
 </script>
 
 <template class="container">
-  <AppHeader />
-  <AppMain />
+  <div v-if="!store.loading">
+    <AppHeader />
+    <AppMain />
+  </div>
+
+  <Loading v-else />
+
 </template>
+
 
 <style lang="scss">
 @use './styles/general.scss'
