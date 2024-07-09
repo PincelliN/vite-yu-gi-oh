@@ -3,11 +3,12 @@ import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
 import { store } from "./store"
+
 export default {
   name: "App",
   components: {
     AppHeader,
-    AppMain
+    AppMain,
 
   },
   data() {
@@ -22,8 +23,7 @@ export default {
         .then(res => {
           console.log(res.data.data);
           store.cardList = res.data.data;
-
-
+          store.loading = false;
         })
         .catch(err => {
           console.log(err);
