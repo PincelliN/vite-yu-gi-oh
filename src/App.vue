@@ -4,12 +4,14 @@ import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
 import { store } from "./store"
 import Loading from './components/Loading.vue';
+import AppSelect from './components/AppSelect.vue';
 
 export default {
   name: "App",
   components: {
     AppHeader,
     AppMain,
+    AppSelect,
     Loading
 
   },
@@ -19,11 +21,19 @@ export default {
     }
   },
   methods: {
+
     getCards() {
+      let endPoint = store.apiUrl
+      if (store.apiParam !== "0") {
+
+
+        endPoint = store.apiFilter + store.apiParam
+      }
       axios.
-        get(store.apiUrl)
+        get(endPoint)
         .then(res => {
-          console.log(res.data.data);
+          console.log(res.data.data
+          );
           store.cardList = res.data.data;
           store.loading = false;
         })
@@ -31,9 +41,11 @@ export default {
           console.log(err);
         })
     }
+
   },
   created() {
     this.getCards()
+
   }
 }
 </script>
@@ -41,6 +53,7 @@ export default {
 <template class="container">
   <div v-if="!store.loading">
     <AppHeader />
+    <AppSelect class="mx-5 m-3" @filter="getCards" />
     <AppMain />
   </div>
 
