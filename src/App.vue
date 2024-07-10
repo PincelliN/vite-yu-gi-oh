@@ -5,6 +5,8 @@ import AppMain from './components/AppMain.vue';
 import { store } from "./store"
 import Loading from './components/Loading.vue';
 import AppSelect from './components/AppSelect.vue';
+import AppCardScreen from './components/AppCardScreen.vue';
+
 
 export default {
   name: "App",
@@ -12,7 +14,8 @@ export default {
     AppHeader,
     AppMain,
     AppSelect,
-    Loading
+    Loading,
+    AppCardScreen
 
   },
   data() {
@@ -23,6 +26,8 @@ export default {
   methods: {
 
     getCards() {
+      store.loading = true;
+
       let endPoint = store.apiUrl
       if (store.apiParam !== "0") {
 
@@ -54,6 +59,7 @@ export default {
   <div v-if="!store.loading">
     <AppHeader />
     <AppSelect class="mx-5 m-3" @filter="getCards" />
+    <AppCardScreen />
     <AppMain />
   </div>
 
