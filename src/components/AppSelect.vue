@@ -32,7 +32,7 @@ export default {
 
             <select class="form-select" aria-label="Default select example" @change="$emit('filter')"
                 v-model="store.apiParam">
-                <option value="0" selected>Open this select menu</option>
+                <option value="0" selected>Select Archetype</option>
                 <option v-for="card in store.filterList" :value="card">{{ card }}</option>
 
             </select>

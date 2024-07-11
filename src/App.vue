@@ -32,7 +32,7 @@ export default {
       if (store.apiParam !== "0") {
 
 
-        endPoint = store.apiFilter + store.apiParam
+        endPoint = store.apiFilter + store.apiParam;
       }
       axios.
         get(endPoint)
